@@ -40,11 +40,9 @@ public class AuthenticationService {
     }
 
     public AuthenticationResponse authenticate(AuthenticationRequest authRequest){
-        authenticationManager.authenticate(
-                new UsernamePasswordAuthenticationToken(
+        authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(
                         authRequest.getEmail(),
-                        authRequest.getPassword()
-                )
+                        authRequest.getPassword())
         );
 
         var user = repository.findByEmail(authRequest.getEmail())

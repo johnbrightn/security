@@ -1,5 +1,6 @@
 package com.jbntech.security.config;
 
+import com.jbntech.security.error.JwtException;
 import com.jbntech.security.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
@@ -19,6 +20,7 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 public class ApplicationConfig {
 
     private final UserRepository userRepository;
+
     @Bean
     public UserDetailsService userDetailsService(){
         return username -> userRepository.findByEmail(username)
@@ -37,6 +39,7 @@ public class ApplicationConfig {
     @Bean
     public AuthenticationManager authenticationManager(AuthenticationConfiguration config) throws Exception {
         return config.getAuthenticationManager();
+
     }
 
     @Bean
